@@ -34,12 +34,21 @@ class Collection
 
     function save()
     {
-
+        $GLOBALS['DB']->exec("INSERT INTO collections (name) VALUES ('{$this->getName()}')");
+        $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
     static function getAll()
     {
-
+        $returned_collections = $GLOBALS['DB']->query("SELECT * FROM collections");
+        $collections_array = array();
+        foreach($returned_collections as $collection) {
+            $id = $collection["id"];
+            $name = $collection["name"];
+            $new_collection = new Collection($name, $id);
+            array_push($collections_array, $new_collection);
+        }
+        return $collections_array;
     }
 
 
