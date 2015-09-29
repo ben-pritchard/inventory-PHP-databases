@@ -32,6 +32,16 @@ class Collection
         $this->id = $new_id;
     }
 
+    function save()
+    {
+
+    }
+
+    static function getAll()
+    {
+
+    }
+
 
 }
 
