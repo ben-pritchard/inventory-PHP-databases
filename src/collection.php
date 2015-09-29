@@ -56,6 +56,20 @@ class Collection
         $GLOBALS['DB']->exec("DELETE FROM collections;");
     }
 
+    static function find($found_id)
+    {
+        $found_collection = null;
+        $collections = Collection::getAll();
+        foreach($collections as $collection){
+            $id = $collection->getId();
+            if ($id == $found_id){
+                $found_collection = $collection;
+            }
+        }
+        return $found_collection;
+
+    }
+
 
 }
 
