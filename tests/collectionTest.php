@@ -18,7 +18,7 @@
         {
             Collection::deleteAll();
         }
-        
+
         function test_save()
         {
             // Arrange
@@ -50,6 +50,23 @@
             //Assert
             $this->assertEquals([], $result);
 
+        }
+
+        function test_find()
+        {
+            //Arrange
+            $name = "Hello Kitty";
+            $name2 = "Pokemon";
+            $test_collection = new Collection($name);
+            $test_collection->save();
+            $test_collection2 = new Collection($name2);
+            $test_collection2->save();
+
+            //Act
+            $result = Collection::find($test_collection2->getId());
+
+            //Assert
+            $this->assertEquals($test_collection2, $result);
         }
     }
 
