@@ -5,25 +5,51 @@
     </head>
     <body>
         <div class="container">
-            <h1>Here are all your collections:</h1>
-            <ul>
-                {% for collection in collections %}
-                    <li>Collection Name: {{ collection.getName }}</li>
-                {% endfor %}
-            </ul>
+            <div class="col-md-6">
+                <h1>Here are all your collections:</h1>
+                <ul>
+                    {% for collection in collections %}
+                        <li>Collection Name: {{ collection.getName }}</li>
+                    {% endfor %}
+                </ul>
 
-            <form action="/collections" method="post">
-                <div class="form-group">
-                    <label for="name">Enter a name for your collection:</label>
-                    <input id="name" name="name" type="text">
-                </div>
+                <form action="/collection" method="post">
+                    <div class="form-group">
+                        <label for="name">Enter a name for your collection:</label>
+                        <input id="name" name="name" type="text">
+                    </div>
 
-                <button type="submit" class="btn btn-success">Add your collection</button>
-            </form>
+                    <button type="submit" class="btn btn-success">Add your collection</button>
+                </form>
 
-            <form action="/delete" method="post">
-                <button type="submit" class="btn btn-danger">Destroy all Entries</button>
-            </form>
+                <form action="/delete_collections" method="post">
+                    <button type="submit" class="btn btn-danger">Destroy all Entries</button>
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <h1>Here are all your items:</h1>
+                <ul>
+                    {% for item in items %}
+                        <li>Item Name: {{ item.getName }}</li>
+                    {% endfor %}
+                </ul>
+
+                <form action="/item" method="post">
+                    <div class="form-group">
+                        <label for="name">Enter a name for your item:</label>
+                        <input id="name" name="name" type="text">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Add your item</button>
+                </form>
+
+                <form action="/delete_items" method="post">
+                    <button type="submit" class="btn btn-danger">Destroy all Entries</button>
+                </form>
+            </div>
+
+            </div>
 
         </div>
     </body>
