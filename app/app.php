@@ -24,5 +24,16 @@
         return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll()));
     });
 
+    $app->post('/collections', function() use ($app) {
+        $collection = new Collection($_POST['name']);
+        $collection->save();
+        return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll()));
+    });
+
+    $app->post('/delete', function() use ($app) {
+        Collection::deleteAll();
+        return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll()));
+    });
+
     return $app;
 ?>
