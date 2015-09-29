@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
+        <title>Home</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Here are all your collections:</h1>
+            <ul>
+                {% for collection in collections %}
+                    <li>Collection Name: {{ collection.getName }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
