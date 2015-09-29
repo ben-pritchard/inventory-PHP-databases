@@ -51,6 +51,11 @@ class Collection
         return $collections_array;
     }
 
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM collections;");
+    }
+
 
 }
 
