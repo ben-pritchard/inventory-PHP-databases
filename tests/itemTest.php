@@ -21,7 +21,7 @@
             Collection::deleteAll();
         }
 
-        function test_getCollectionId()
+        function testGetCollectionId()
         {
             // Arrange
             $collection_name = "Basketball cards";
@@ -41,7 +41,7 @@
 
         }
 
-        function test_save()
+        function testSave()
         {
             // Arrange
             $collection_name = "Star Wars cards";
@@ -60,7 +60,27 @@
             $this->assertEquals($test_item, $result[0]);
         }
 
-        function  test_deleteAll()
+        function testDelete()
+        {
+            // Arrange
+            $collection_name = "Star Wars cards";
+            $test_collection = new Collection($collection_name);
+            $test_collection->save();
+            $test_collection_id = $test_collection->getId();
+
+            $name = "Darth Vader Black Border Premier";
+            $test_item = new Item($name, $test_collection_id);
+            $test_item->save();
+
+            // Act
+            $test_item->delete();
+            $collection_items = $test_collection->getItems();
+
+            // Assert
+            $this->assertEquals([], $collection_items);
+        }
+
+        function  testDeleteAll()
         {
             //Arrange
             $collection_name = "Cool stuff";
@@ -84,7 +104,7 @@
 
         }
 
-        function test_find()
+        function testFind()
         {
             //Arrange
             $collection_name = "Rad stuff";

@@ -45,6 +45,11 @@ class Item
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM items WHERE id = {$this->getId()}");
+    }
+
     static function getAll()
     {
         $returned_items = $GLOBALS['DB']->query("SELECT * FROM items");
