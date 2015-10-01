@@ -1,15 +1,16 @@
 <html>
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
         <title>Home</title>
     </head>
     <body>
         <div class="container">
-            <div class="col-md-6">
+            <div class="col-md-6 box">
                 <h1>Here are all your collections:</h1>
                 <ul>
                     {% for collection in collections %}
-                        <li>Collection Name: {{ collection.getName }}</li>
+                        <li>{{ collection.getName }}</li>
                     {% endfor %}
                 </ul>
 
@@ -27,11 +28,11 @@
                 </form>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 box">
                 <h1>Here are all your items:</h1>
                 <ul>
                     {% for item in items %}
-                        <li>Item Name: {{ item.getName }}</li>
+                        <li>{{ item.getName }}</li>
                     {% endfor %}
                 </ul>
 

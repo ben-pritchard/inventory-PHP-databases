@@ -1,0 +1,3 @@
+Questions:
+
+- When I refresh the page, the last collection or item added is added again

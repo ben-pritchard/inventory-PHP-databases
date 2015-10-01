@@ -4,11 +4,13 @@ class Item
 //when we declare a class it is singular!
 {
     private $name;
+    private $collection_id;
     private $id;
 
-    function __construct($name, $id = null)
+    function __construct($name, $collection_id, $id = null)
     {
         $this->name = $name;
+        $this->collection_id = $collection_id;
         $this->id = $id;
     }
 
@@ -32,9 +34,14 @@ class Item
         $this->id = $new_id;
     }
 
+    function getCollectionId()
+    {
+        return $this->collection_id;
+    }
+
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO items (name) VALUES ('{$this->getName()}')");
+        $GLOBALS['DB']->exec("INSERT INTO items (name, collection_id) VALUES ('{$this->getName()}', {$this->getCollectionId()})");
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
@@ -44,8 +51,9 @@ class Item
         $items_array = array();
         foreach($returned_items as $item) {
             $id = $item["id"];
+            $collection_id = $item["collection_id"];
             $name = $item["name"];
-            $new_item = new Item($name, $id);
+            $new_item = new Item($name, $collection_id, $id);
             array_push($items_array, $new_item);
         }
         return $items_array;
