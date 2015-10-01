@@ -32,6 +32,11 @@ class Collection
         $this->id = $new_id;
     }
 
+    function getItems()
+    {
+        
+    }
+
     function save()
     {
         $GLOBALS['DB']->exec("INSERT INTO collections (name) VALUES ('{$this->getName()}')");

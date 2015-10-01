@@ -33,6 +33,28 @@
             $this->assertEquals($test_collection, $result[0]);
         }
 
+        function test_getItems()
+        {
+            // Arrange
+            $collection_name = "Star Wars Cards";
+            $test_collection = new Collection($collection_name);
+            $test_collection->save();
+            $collection_id = $test_collection->getId();
+            $item_name = "Boba Fett";
+            $test_item = new Item($item_name, $collection_id);
+            $test_item->save();
+            $item_name2 = "Slave 1";
+            $test_item2 = new Item($item_name2, $collection_id);
+            $test_item2->save();
+
+            // Act
+            $items = array();
+            $collection_items = $test_collection->getItems();
+
+            // Assert
+            $this->assertEquals([$test_item, $test_item2], $collection_items);
+        }
+
         function  test_deleteAll()
         {
             //Arrange
