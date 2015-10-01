@@ -52,6 +52,12 @@ class Collection
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM collections WHERE id = {$this->getId()}");
+        $GLOBALS['DB']->exec("DELETE FROM items WHERE collection_id = {$this->getId()}");
+    }
+
     static function getAll()
     {
         $returned_collections = $GLOBALS['DB']->query("SELECT * FROM collections");

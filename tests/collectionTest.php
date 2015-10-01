@@ -17,9 +17,10 @@
         protected function tearDown()
         {
             Collection::deleteAll();
+            Item::deleteAll();
         }
 
-        function test_save()
+        function testSave()
         {
             // Arrange
             $name = "Star Wars Cards";
@@ -55,7 +56,45 @@
             $this->assertEquals([$test_item, $test_item2], $collection_items);
         }
 
-        function  test_deleteAll()
+        function testDelete()
+        {
+            // Arrange
+            $collection_name = "Star Wars Cards";
+            $test_collection = new Collection($collection_name);
+            $test_collection->save();
+            $collection_name2 = "Cool stuff";
+            $test_collection2 = new Collection($collection_name2);
+            $test_collection2->save();
+
+            // Act
+            $test_collection->delete();
+
+            // Assert
+            $this->assertEquals([$test_collection2], Collection::getAll());
+        }
+
+        function testDeleteAssociatedTasks()
+        {
+            // Arrange
+            $collection_name = "Star Wars Cards";
+            $test_collection = new Collection($collection_name);
+            $test_collection->save();
+            $collection_id = $test_collection->getId();
+            $item_name = "Boba Fett";
+            $test_item = new Item($item_name, $collection_id);
+            $test_item->save();
+            $item_name2 = "Slave 1";
+            $test_item2 = new Item($item_name2, $collection_id);
+            $test_item2->save();
+
+            // Act
+            $test_collection->delete();
+
+            // Assert
+            $this->assertEquals([], Item::getAll());
+        }
+
+        function testDeleteAll()
         {
             //Arrange
             $name = "Hello Kitty";
@@ -74,7 +113,7 @@
 
         }
 
-        function test_find()
+        function testFind()
         {
             //Arrange
             $name = "Hello Kitty";
