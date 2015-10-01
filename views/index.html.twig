@@ -6,17 +6,17 @@
     </head>
     <body>
         <div class="container">
-            <div class="col-md-6 box">
+            <div class="box">
                 <h1>Here are all your collections:</h1>
                 <ul>
                     {% for collection in collections %}
-                        <li>{{ collection.getName }}</li>
+                        <li><a href="/collection/{{ collection.getId }}">{{ collection.getName }}</a></li>
                     {% endfor %}
                 </ul>
 
-                <form action="/collection" method="post">
+                <form action="/collections" method="post">
                     <div class="form-group">
-                        <label for="name">Enter a name for your collection:</label>
+                        <label for="name">Add a new collection:</label>
                         <input id="name" name="name" type="text">
                     </div>
 
@@ -27,31 +27,6 @@
                     <button type="submit" class="btn btn-danger">Destroy all Entries</button>
                 </form>
             </div>
-
-            <div class="col-md-6 box">
-                <h1>Here are all your items:</h1>
-                <ul>
-                    {% for item in items %}
-                        <li>{{ item.getName }}</li>
-                    {% endfor %}
-                </ul>
-
-                <form action="/item" method="post">
-                    <div class="form-group">
-                        <label for="name">Enter a name for your item:</label>
-                        <input id="name" name="name" type="text">
-                    </div>
-
-                    <button type="submit" class="btn btn-success">Add your item</button>
-                </form>
-
-                <form action="/delete_items" method="post">
-                    <button type="submit" class="btn btn-danger">Destroy all Entries</button>
-                </form>
-            </div>
-
-            </div>
-
         </div>
     </body>
 </html>

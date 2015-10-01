@@ -22,13 +22,18 @@
     ));
 
     $app->get('/', function() use ($app) {
-        return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll(), 'items' => Item::getAll()));
+        return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll()));
     });
 
-    $app->post('/collection', function() use ($app) {
+    $app->post('/collections', function() use ($app) {
         $collection = new Collection($_POST['name']);
         $collection->save();
         return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll(), 'items' => Item::getAll()));
+    });
+
+    $app->get('/collection/{id}', function($id) use ($app) {
+        $collection = Collection::find($id);
+        return $app['twig']->render('collection.html.twig', array('collection' => $collection, 'items' => $collection->getItems()));
     });
 
     $app->post('/delete_collections', function() use ($app) {
@@ -36,10 +41,11 @@
         return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll(), 'items' => Item::getAll()));
     });
 
-    $app->post('/item', function() use ($app) {
-        $item = new Item($_POST['name']);
+    $app->post('/items', function() use ($app) {
+        $item = new Item($_POST['name'], $_POST['collection_id']);
         $item->save();
-        return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll(), 'items' => Item::getAll()));
+        $collection = Collection::find($_POST['collection_id']);
+        return $app['twig']->render('collection.html.twig', array('collection' => $collection, 'items' => $collection->getItems()));
     });
 
     $app->post('/delete_items', function() use ($app) {

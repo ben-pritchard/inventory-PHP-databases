@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
+        <title>Inventory</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="box">
+                <h1>{{ collection.getName }} collection:</h1>
+                <ul>
+                {% for item in items %}
+                    <li>{{ item.getName }}</li>
+                {% endfor %}
+                </ul>
+                <form action="/items" method="post">
+                    <div class="form-group">
+                        <input id="collection_id" name="collection_id" type="hidden" value="{{ collection.getId() }}">
+                        <label for="name">Add a new item to this collection:</label>
+                        <input id="name" name="name" type="text">
+                    </div>
+                    <button type="submit" class="btn btn-success">Add your item</button>
+                </form>
+                <a href="/">Home</a>
+            </div>
+        </div>
+    </body>
+</html>
