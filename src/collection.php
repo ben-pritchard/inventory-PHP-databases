@@ -34,7 +34,16 @@ class Collection
 
     function getItems()
     {
-        
+        $items = array();
+        $db_items = $GLOBALS['DB']->query("SELECT * FROM items WHERE collection_id = ('{$this->getId()}')");
+        foreach($db_items as $item) {
+            $name = $item["name"];
+            $collection_id = $item["collection_id"];
+            $id = $item["id"];
+            $found_item = new Item($name, $collection_id, $id);
+            array_push($items, $found_item);
+        }
+        return $items;
     }
 
     function save()
