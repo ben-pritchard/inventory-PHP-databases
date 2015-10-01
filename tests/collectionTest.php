@@ -73,7 +73,7 @@
             $this->assertEquals([$test_collection2], Collection::getAll());
         }
 
-        function testDeleteAssociatedTasks()
+        function testDeleteAlsoDeletesAssociatedItems()
         {
             // Arrange
             $collection_name = "Star Wars Cards";
@@ -92,6 +92,27 @@
 
             // Assert
             $this->assertEquals([], Item::getAll());
+        }
+
+        function testDeleteAssociatedItems()
+        {
+            $collection_name = "Star Wars Cards";
+            $test_collection = new Collection($collection_name);
+            $test_collection->save();
+            $collection_id = $test_collection->getId();
+            $item_name = "Boba Fett";
+            $test_item = new Item($item_name, $collection_id);
+            $test_item->save();
+            $item_name2 = "Slave 1";
+            $test_item2 = new Item($item_name2, $collection_id);
+            $test_item2->save();
+
+            // Act
+            $test_collection->deleteAssociatedItems();
+
+            // Assert
+            $this->assertEquals([], Item::getAll());
+
         }
 
         function testDeleteAll()

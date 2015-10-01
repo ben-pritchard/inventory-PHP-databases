@@ -48,9 +48,10 @@
         return $app['twig']->render('collection.html.twig', array('collection' => $collection, 'items' => $collection->getItems()));
     });
 
-    $app->post('/delete_items', function() use ($app) {
-        Item::deleteAll();
-        return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll(), 'items' => Item::getAll()));
+    $app->post('/collection/{id}/delete_items', function($id) use ($app) {
+        $collection = Collection::find($id);
+        $collection->deleteAssociatedItems();
+        return $app['twig']->render('collection.html.twig', array('collection' => $collection, 'items' => []));
     });
 
     return $app;

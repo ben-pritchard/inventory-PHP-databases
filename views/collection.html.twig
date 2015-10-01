@@ -21,6 +21,9 @@
                     </div>
                     <button type="submit" class="btn btn-success">Add your item</button>
                 </form>
+                <form action="/collection/{{ collection.getId() }}/delete_items" method="post">
+                    <button type="submit" class="btn btn-danger">Delete all items</button>
+                </form>
                 <a href="/">Home</a>
             </div>
         </div>

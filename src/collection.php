@@ -58,6 +58,11 @@ class Collection
         $GLOBALS['DB']->exec("DELETE FROM items WHERE collection_id = {$this->getId()}");
     }
 
+    function deleteAssociatedItems()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM items WHERE collection_id = {$this->getId()}");
+    }
+
     static function getAll()
     {
         $returned_collections = $GLOBALS['DB']->query("SELECT * FROM collections");
