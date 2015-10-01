@@ -2,3 +2,4 @@ Questions/Open:
 
 - When I refresh the page, the last collection or item added is added again
 - When I delete all items from a collection, the background image disappears
+- Can I set an <a> tag method="post"?

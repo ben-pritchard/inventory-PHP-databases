@@ -41,6 +41,12 @@
         return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll(), 'items' => Item::getAll()));
     });
 
+    $app->post('/collection/{id}/delete', function($id) use ($app) {
+        $collection = Collection::find($id);
+        $collection->delete();
+        return $app['twig']->render('index.html.twig', array('collections' => Collection::getAll()));
+    });
+
     $app->post('/items', function() use ($app) {
         $item = new Item($_POST['name'], $_POST['collection_id']);
         $item->save();

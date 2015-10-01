@@ -10,7 +10,14 @@
                 <h1>Here are all your collections:</h1>
                 <ul>
                     {% for collection in collections %}
-                        <li><a href="/collection/{{ collection.getId }}">{{ collection.getName }}</a></li>
+                        <li>
+                            <div class="inlinee">
+                                <a href="/collection/{{ collection.getId }}">{{ collection.getName }}</a>
+                                <form action="/collection/{{ collection.getId }}/delete" method="post">
+                                    <button type="submit" class="btn btn-warning btn-xs">Destroy</button>
+                                </form>
+                            </div>
+                        </li>
                     {% endfor %}
                 </ul>
 
