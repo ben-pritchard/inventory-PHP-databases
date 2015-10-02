@@ -11,7 +11,7 @@ body {
     padding: 10px;
 }
 
-.inlinee {
+.inline {
     display: inline;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
 }
